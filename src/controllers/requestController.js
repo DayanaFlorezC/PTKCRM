@@ -52,10 +52,11 @@ const getRequestByUser = async (req, res) =>{
 
         const limit = +req.query?.limit || 5
         const page = +req.query?.page || 1
+
+        console.log(limit, page, req.params.userId, 'ajaj')
         
         const { count, rows: solicitudes } = await Request.findAndCountAll({
             where: { id_empleado: req.params.userId },
-            include: [User],
             limit: limit,
             offset: (page-1)*limit 
         });

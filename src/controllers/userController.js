@@ -27,9 +27,13 @@ const getEmpleados = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
+
+        console.log(req.query, 'veamos')
         const limit = +req.query?.limit || 5
         const page = +req.query?.page || 1
 
+
+        console.log(page, 'esta llegando bienS')
         const { count, rows: users } = await User.findAndCountAll({
             limit: limit,
             offset: (page-1)*limit
@@ -77,6 +81,8 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
 
     try {
+
+        console.log('en el tiempo de los apostoles')
 
         const user = await User.findOne({
             where: {
