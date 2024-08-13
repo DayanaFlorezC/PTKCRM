@@ -6,11 +6,7 @@ const authFunction = async (req, res, next) => {
 
         const token = req.headers['authorization']
 
-        console.log(token, 'ususu')
-
         if (!token) return res.status(401).json({ mensaje: 'No hay token' })
-
-        console.log('k y aca')
 
         const tokenWithoutBearer = token.split(' ')[1]
 

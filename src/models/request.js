@@ -49,7 +49,6 @@ const Request = sequelize.define('Request', {
 const syncModels = async () => {
     try {
         await sequelize.sync({ force: false });
-        console.log('Modelos sincronizados con la base de datos.');
     } catch (error) {
         console.error('Error al sincronizar los modelos:', error);
     }

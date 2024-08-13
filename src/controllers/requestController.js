@@ -1,4 +1,5 @@
 const {Request} = require('../models/request')
+const { User } = require('../models/user');
 
 const createRequest = async (req, res) => {
     try {
@@ -52,13 +53,11 @@ const getRequestByUser = async (req, res) =>{
 
         const limit = +req.query?.limit || 5
         const page = +req.query?.page || 1
-
-        console.log(limit, page, req.params.userId, 'ajaj')
         
         const { count, rows: solicitudes } = await Request.findAndCountAll({
             where: { id_empleado: req.params.userId },
             limit: limit,
-            offset: (page-1)*limit 
+            offset: (page-1)*limit,
         });
 
         res.json({solicitudes, count})
@@ -71,13 +70,22 @@ const getRequestByUser = async (req, res) =>{
 
 const deleteRequest = async  (req, res) =>{
 
-    const request = await Request.findByPk(req.params.id)
+    try {
+        const request = await Request.findByPk(req.params.id)
 
-    if(!request) return res.status(404).json({ message: 'Solicitud no encontrada' });
+        if(!request) return res.status(404).json({ message: 'Solicitud no encontrada' });
+    
+        request.destroy()
+    
+        res.json({ message: 'Solicitud eliminada', solicitud: request })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: error.message });
+        
+    }
 
-    request.destroy()
-
-    res.json({ message: 'Solicitud eliminada', solicitud: request })
+   
 
 }
 module.exports = {

@@ -28,12 +28,9 @@ const getEmpleados = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
 
-        console.log(req.query, 'veamos')
         const limit = +req.query?.limit || 5
         const page = +req.query?.page || 1
 
-
-        console.log(page, 'esta llegando bienS')
         const { count, rows: users } = await User.findAndCountAll({
             limit: limit,
             offset: (page-1)*limit
@@ -63,7 +60,7 @@ const createUser = async (req, res) => {
         const userNew = {
             nombre: req.body.nombre,
             salario: req.body.salario,
-            fechaIngreso: new Date(req.body.fechaIngreso),
+            fechaIngreso: new Date(),
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
             rol: req.body.rol
@@ -81,8 +78,6 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
 
     try {
-
-        console.log('en el tiempo de los apostoles')
 
         const user = await User.findOne({
             where: {
@@ -123,7 +118,12 @@ const updateUser = async (req, res) => {
 
 const deleteEmpleado = async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.id);
+
+
+        console.log(req.params.id)
+        const user = await User.findByPk(+req.params.id);
+
+        console.log(user, 'lala')
 
         if (!user) {
             return res.status(404).json({ message: 'Empleado no encontrado' });
