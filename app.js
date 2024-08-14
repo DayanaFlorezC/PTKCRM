@@ -13,7 +13,7 @@ app.use(cors({
 }
 ));
 
-const port = 8000;
+const port = 3001;
 
 app.get('/', (req, res) => {
     res.send('Hallo world')
