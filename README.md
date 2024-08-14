@@ -1,5 +1,7 @@
 PTKCRM
 Prueba Técnica PTKCRM Backend
+
+
 Este repositorio contiene el proyecto backend de la prueba técnica fullstack para las API.
 
 Las peticiones en este proyecto se basan en dos entidades: usuarios, con roles de empleado y administrador, y solicitudes.
@@ -31,6 +33,8 @@ CREATE TABLE "Users" (
     createdAt TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+
 Crear la tabla de solicitudes:
 
 sql
@@ -60,3 +64,17 @@ Copiar código
     "email": "susy13@gmail.com"
 }
 Una vez que tengas el primer administrador, puedes iniciar la creación de usuarios y solicitudes sin comentar los middlewares.
+
+
+Seguridad:
+
+
+Para garantizar la seguridad, he implementado un middleware de autenticación que utiliza el token generado al iniciar sesión. Además, he añadido un middleware específico para restringir el acceso a las rutas que solo pueden ser visitadas por administradores.
+
+Buenas Prácticas:
+
+
+En el desarrollo del backend, he tenido en cuenta las siguientes buenas prácticas:
+
+Manejo de Errores: Utilizo bloques try/catch para gestionar los errores de manera eficiente.
+Separación de Funcionalidades: He organizado el código separando las funcionalidades en distintos componentes, como rutas, middlewares, controladores y modelos, para mejorar la mantenibilidad y escalabilidad del proyecto.
