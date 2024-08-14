@@ -2,7 +2,7 @@ PTKCRM
 Prueba Técnica PTKCRM Backend
 
 
-Este repositorio contiene el proyecto backend de la prueba técnica fullstack para las API.
+Este repositorio contiene el proyecto backend de la prueba técnica para las API.
 
 Las peticiones en este proyecto se basan en dos entidades: usuarios, con roles de empleado y administrador, y solicitudes.
 
